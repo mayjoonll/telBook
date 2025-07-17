@@ -52,5 +52,4 @@ public class TelDto {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
 }

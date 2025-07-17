@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 public class TelBookMain {
-
     public static void main(String[] args) {
 
         UserView userView = new UserView();
@@ -28,10 +27,10 @@ public class TelBookMain {
                     userView.deleteView();
                     break;
                 case 4:
-                    userView.findAllview();
+                    userView.findAllView();
                     break;
                 case 5:
-                    userView.seaerchView();
+                    userView.searchView();
                     break;
                 case 6:
                     return;

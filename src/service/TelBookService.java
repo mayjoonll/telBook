@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelBookService implements CrudInterface {
+public class TelBookService implements CrudInterface{
     // Db 연결하기
     Connection conn = DBConn.getConnection();
     PreparedStatement psmt = null;
@@ -21,11 +21,11 @@ public class TelBookService implements CrudInterface {
         System.out.println("[TelBookService.InsertData]");
 
         try {
-            sql = "INSERT INTO telbook(name, age, adress, phone) ";
+            sql = "INSERT INTO telbook(name, age, address, phone) ";
             sql = sql + "VALUES(?, ?, ?, ?)";
 
             psmt = conn.prepareStatement(sql);
-            // ? 각 자리를 Mapping 해 준다
+            // ? 각 자리를 Mapping 해 준다.
             psmt.setString(1, dto.getName());
             psmt.setInt(2, dto.getAge());
             psmt.setString(3, dto.getAddress());
@@ -35,8 +35,8 @@ public class TelBookService implements CrudInterface {
             int result = psmt.executeUpdate();
             psmt.close();
             return result;
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        } catch (SQLException e) {
+            System.out.println(e.toString());;
         }
         return 0;
     }
@@ -56,7 +56,7 @@ public class TelBookService implements CrudInterface {
     @Override
     public List<TelDto> getListAll() {
         System.out.println("[TelBookService.getListAll]");
-        // Db에서 select 한 결과를 담을 리스트 선언
+        // DB에서 select 한 결과를 담을 리스트 선언
         List<TelDto> dtoList = new ArrayList<>();
         ResultSet rs = null;
 
@@ -71,17 +71,14 @@ public class TelBookService implements CrudInterface {
             while (rs.next()) {
                 TelDto dto = new TelDto();
                 dto.setId(rs.getInt("id"));
-                dto.setName(rs.getNString("name"));
+                dto.setName(rs.getString("name"));
                 dto.setAge(rs.getInt("age"));
-                dto.setAddress(rs.getNString("address"));
-                dto.setPhone(rs.getNString("phone"));
+                dto.setAddress(rs.getString("address"));
+                dto.setPhone(rs.getString("phone"));
 
                 // 리스트에 담기
                 dtoList.add(dto);
             }
-            // 잘 들어왔는지 확인
-            dtoList.stream()
-                    .forEach(x-> System.out.println(x));
             rs.close();
             psmt.close();
         } catch (SQLException e) {
@@ -96,10 +93,9 @@ public class TelBookService implements CrudInterface {
         return null;
     }
 
-
     @Override
-    public List<TelDto> serchList(String keyword) {
-        System.out.println("[TelBookService.serchList]");
+    public List<TelDto> searchList(String keyword) {
+        System.out.println("[TelBookService.searchList]");
         return List.of();
     }
 }

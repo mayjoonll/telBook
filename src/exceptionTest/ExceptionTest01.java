@@ -8,7 +8,7 @@ public class ExceptionTest01 {
             int c = a / b;
             System.out.println(c);
         } catch (ArithmeticException e) {
-            System.out.println("0으로 나누지마쇼");
+            System.out.println("0으로 나누면 미워요");
         } catch (Exception e) {
             System.out.println("예외가 발생했어요");
         } finally {
