@@ -5,7 +5,7 @@ import dto.TelDto;
 import java.util.List;
 
 public interface CrudInterface {
-    int InsertData(TelDto dto);
+    int insertData(TelDto dto);
 
     int UpdateData(TelDto dto);
 
