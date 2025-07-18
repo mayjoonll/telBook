@@ -50,7 +50,17 @@ public class TelBookService implements CrudInterface{
     @Override
     public int deleteData(int id) {
         System.out.println("[TelBookService.DeleteData]");
-        return 0;
+        int result = 0;
+        try {
+            sql = "DELETE FROM telbook WHERE id = ?";
+            psmt = conn.prepareStatement(sql);
+            psmt.setInt(1, id);
+            result = psmt.executeUpdate();
+            psmt.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
 
     @Override
